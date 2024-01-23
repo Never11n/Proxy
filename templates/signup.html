@@ -5,9 +5,10 @@
     <title>Proxy</title>
 </head>
 <body>
-<form class="registration" action="{% url 'signup' %}">
+<form method="post" class="registration" action="{% url 'signup' %}">
     {% csrf_token %}
     {{ form.as_p }}
+
     <button type="submit">Sign Up</button>
 </form>
 </body>

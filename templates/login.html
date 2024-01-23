@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Proxy</title>
+</head>
+<body>
+    {% if error_message %}
+        <p>{{ error_message }}</p>
+    {% endif %}
+
+    <form method="post" action="{% url 'login' %}">
+
+        <label for="username">Username</label>
+        <input type="text" name="username" class="username">
+
+        <label for="password">Password</label>
+        <input type="text" name="password" class="password">
+
+        <button type="submit">Log In</button>
+
+    </form>
+</body>
+</html>
