@@ -1,6 +1,8 @@
 from django.contrib.auth import login, authenticate
 from django.shortcuts import render, redirect
-from .forms import SignUpForm
+from django.views import View
+
+from .forms import SignUpForm, UserSiteForm
 
 
 def signup(request):
@@ -27,3 +29,6 @@ def custom_login(request):
             return render(request, 'login.html', {'error_message': 'Incorrect values'})
     else:
         return render(request, 'login.html')
+
+
+
