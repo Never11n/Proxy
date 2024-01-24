@@ -1,12 +1,14 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views import View
 from .forms import UserSiteForm
+from .models import UserSite
 
 
 class CreateSiteView(View):
     def get(self, request):
         site_form = UserSiteForm()
-        return render(request, 'main.html', {'form': site_form})
+        user_sites_list = UserSite.objects.filter(user=request.user)
+        return render(request, 'main.html', {'form': site_form, 'sites': user_sites_list})
 
     def post(self, request):
         site_form = UserSiteForm(request.POST)
@@ -14,4 +16,9 @@ class CreateSiteView(View):
             user_site = site_form.save(commit=False)
             user_site.user = request.user
             user_site.save()
-        return render(request, 'main.html', {'form': site_form})
+            return redirect('main')
+        return render(request, 'main.html', {'form': site_form, 'success_message': 'Site created successfully'})
+
+
+def proxy(request, site_name):
+    return render(request, 'proxy_site.html', {'site_name': site_name})

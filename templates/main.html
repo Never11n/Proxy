@@ -5,10 +5,19 @@
     <title>Proxy</title>
 </head>
 <body>
+    {% if success_message %}
+        <p>{{ success_message }}</p>
+    {% endif %}
     <form method="post" action="{% url 'main' %}">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit"> Create site</button>
     </form>
+    <div>
+        <h3>Your sites</h3>
+        {% for user_sites in sites %}
+            <a href="{% url 'proxy' site_name=user_sites.site_name %}">{{ user_sites.site_name }}</a>
+        {% endfor %}
+    </div>
 </body>
 </html>

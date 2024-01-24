@@ -15,4 +15,4 @@ class SignUpForm(UserCreationForm):
 class UserSiteForm(forms.ModelForm):
     class Meta:
         model = UserSite
-        fields = ['site_name', 'site_url']
+        fields = ['site_name']
